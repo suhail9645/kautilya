@@ -20,6 +20,15 @@ class AuthCubit extends Cubit<AuthState> {
     return null;
   }
 
+  String?validatingOtp(String otp){
+    if(otp==''){
+      return 'Please Enter The OTP';
+    }else if(otp.length<6){
+      return 'OTP should be six digits';
+    }else{
+      return null;
+    }
+  }
   phoneNumberSubmitedEvent(String number) async {
     emit(LoadingState());
     String firstPart = number.substring(0, 4);
@@ -27,8 +36,10 @@ class AuthCubit extends Cubit<AuthState> {
     String thirdpart = number.substring(7);
     String phoneNumber = '$firstPart-$secondPart-$thirdpart';
     await FirebaseAuth.instance.verifyPhoneNumber(
+     
       phoneNumber: '+91 $phoneNumber',
       timeout: const Duration(seconds: 30),
+     
       verificationCompleted: (phoneAuthCredential) {
         emit(VerificatinCompleteState());
       },

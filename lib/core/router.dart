@@ -5,6 +5,8 @@ import 'package:kautilya/presentation/login_section/login_screen.dart';
 import 'package:kautilya/presentation/otp_verification_section/otp_verification_screen.dart';
 import 'package:kautilya/presentation/web_view/web_view.dart';
 
+import '../logic/counter_cubit/counter_cubit.dart';
+
 class AppRouter {
   Route onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -14,10 +16,17 @@ class AppRouter {
         );
       case 'Submit Screen':
         return MaterialPageRoute(
-          builder: (context) =>  BlocProvider(
-            create: (context) =>LoadingCubit(),
-            child: VerificationScreen(),
-          ),
+          builder: (context) {
+              String verificationId=settings.arguments as String;
+          return MultiBlocProvider(
+            providers: [
+               
+               BlocProvider(create: (context) => CounterCubit(),)
+            ],
+            
+            child: VerificationScreen(verificationId: verificationId,),
+          );
+          }
         );
       case 'Web Screen':
         return MaterialPageRoute(
