@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "554115918307",
+    "project_id": "kautilya-2b92a",
+    "storage_bucket": "kautilya-2b92a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:554115918307:android:555ba415a2337dc51e18d6",
+        "android_client_info": {
+          "package_name": "com.example.kautilya"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmHEXFAvWUfg6KChJfIZfXnksE664ENdo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
