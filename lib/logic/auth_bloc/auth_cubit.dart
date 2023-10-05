@@ -31,6 +31,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
   phoneNumberSubmitedEvent(String number) async {
     emit(LoadingState());
+     await Future.delayed(const Duration(seconds: 3));
     String firstPart = number.substring(0, 4);
     String secondPart = number.substring(4, 7);
     String thirdpart = number.substring(7);
@@ -56,7 +57,9 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   void signInEvent(String otp, String verificationId) async {
+
     emit(LoadingState());
+    await Future.delayed(const Duration(seconds: 3));
     try{
     await FirebaseAuth.instance.signInWithCredential(
         PhoneAuthProvider.credential(

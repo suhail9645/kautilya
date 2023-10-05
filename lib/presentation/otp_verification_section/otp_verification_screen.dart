@@ -98,9 +98,13 @@ class VerificationScreen extends StatelessWidget {
                     ScaffoldMessenger.of(context)
                         .showSnackBar(SnackBar(content: Text(state.error)));
                   }
-                  if (state is VerificatinCompleteState) {
+                 if (state is VerificatinCompleteState) {
                     Navigator.pushNamedAndRemoveUntil(
                         context, "Web Screen", (route) => false);
+                  }
+                  if(state is TimoutState){
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('OTP Timout Please Try again')));
+                    Navigator.pop(context);
                   }
                 },
                 builder: (context, state) {
@@ -151,23 +155,7 @@ class VerificationScreen extends StatelessWidget {
                             fontWeight: FontWeight.bold),
                       ),
                       spaceForWidth10,
-                      InkWell(
-                        onTap: () {
-                          if (state == 0) {
-                            BlocProvider.of<CounterCubit>(context)
-                                .onResendTheOtp();
-                          }
-                        },
-                        child: Text(
-                          'RESEND',
-                          style: GoogleFonts.k2d(
-                              color: state != 0
-                                  ? const Color.fromARGB(255, 86, 84, 84)
-                                  : kWhiteColor,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      )
+                      
                     ],
                   );
                 },
